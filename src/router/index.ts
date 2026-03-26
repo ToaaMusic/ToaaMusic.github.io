@@ -5,7 +5,7 @@ import Post from '@/views/Post.vue'
 import PostsView from '@/views/PostsView.vue'
 import FriendsView from '@/views/FriendsView.vue'
 
-const routes = [
+export const routes = [
   { path: '/', name: 'intro', component: PostsView },
   { path: '/home', name: 'home', component: HomeView },
   { path: '/projects', name: 'projects', component: ProjectView},

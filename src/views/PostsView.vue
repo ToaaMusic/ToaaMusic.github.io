@@ -1,74 +1,3 @@
-<template>
-  <div class="home-container">
-    <section v-show="!nonBg" class="background">
-      <div class="overlay">
-      </div>
-    </section>
-
-    <section class="content" :class="{ 'nonBg': nonBg }">
-      <div class="morebtn">
-        <button class="svgbtn"
-          target="_blank"
-          rel="noopener noreferrer">
-            <MoreIcon />
-        </button>
-      </div>
-      <!-- <Bge/> -->
-      <div class="content-inner" :class="{ expanded: scrollStore.showAvatarInNavbar }">
-        <div class="content-hide">
-          <div class="packs">
-
-          </div>
-        </div>
-        <div class="content-main">
-          <!-- <div class="content-headline">
-            <input
-              class="search"
-              type="text"
-              placeholder="搜索文章..."
-              @keyup.enter="searchPosts"
-            />
-          </div> -->
-          <List
-            :items="filteredPosts"
-            :loading="loading"
-            @click-item="goToPost"
-            :itemKey="(item: any) => item.id"
-          />
-          <div class="pagination">
-            <!-- 分页控件 -->
-          </div>
-        </div>
-        <div class="side">
-          <transition name="bounce-out">
-            <Avatar v-show="!scrollStore.showAvatarInNavbar || isMobile" id="trigger-element" />
-          </transition>
-
-          <transition name="fade-slide">
-            <div class="side-list" >
-              <h2 class="_before-line">Tags</h2>
-              <div class="tag-cloud">
-                <span
-                  v-for="(count, tag) in tagCounts"
-                  :key="tag"
-                  :style="{ fontSize: getFontSize(count) }"
-                  class="tag-item"
-                  @click="filterByTag(tag)"
-                >
-                  {{ '#' + tag }}
-                </span>
-              </div>
-            </div>
-          </transition>
-        </div>
-
-        
-      </div>
-    </section>
-
-  </div>
-</template>
-
 <script setup lang="ts">
 import { onMounted, computed, onBeforeUnmount, ref, nextTick } from 'vue'
 import { usePostStore } from '@/stores/postStore'
@@ -77,9 +6,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { useDevice } from '@/utils/useDevice'
 import Avatar from '@/components/Avatar.vue'
 import MoreIcon from '@/components/icons/MoreIcon.vue'
-import Bge from '@/components/unique/Bge.vue'
-// import List from '@/components/List.vue'
-import {Card, List } from 'ebrainvue'
+import { List } from 'ebrain-ui'
 
 const postStore = usePostStore()
 const scrollStore = useScrollStore()
@@ -88,7 +15,6 @@ const route = useRoute()
 const router = useRouter()
 
 const triggerTop = ref(0)
-const nonBg = ref(true)
 const loading = ref(true)
 
 const selectedTag = computed(() => route.query.tag as string | undefined)
@@ -162,53 +88,57 @@ const getFontSize = (count: number) => {
 
 </script>
 
+<template>
+  <div class="posts-parent">
+    <section class="content">
+      <div class="morebtn">
+        <button class="svgbtn" target="_blank" rel="noopener noreferrer">
+          <MoreIcon />
+        </button>
+      </div>
+      <div class="content-inner" :class="{ expanded: scrollStore.showAvatarInNavbar }">
+        <div class="content-hide">
+          <div class="packs">
+
+          </div>
+        </div>
+        <div class="content-main">
+          <List :items="filteredPosts" :loading="loading" @click-item="goToPost" :itemKey="(item: any) => item.id" />
+        </div>
+        <div class="side">
+          <transition name="bounce-out">
+            <Avatar v-show="!scrollStore.showAvatarInNavbar || isMobile" id="trigger-element" />
+          </transition>
+
+          <transition name="fade-slide">
+            <div class="side-list">
+              <h2 class="_before-line">Tags</h2>
+              <div class="tag-cloud">
+                <span v-for="(count, tag) in tagCounts" :key="tag" :style="{ fontSize: getFontSize(count) }"
+                  class="tag-item" @click="filterByTag(tag)">
+                  {{ '#' + tag }}
+                </span>
+              </div>
+            </div>
+          </transition>
+        </div>
+
+
+      </div>
+    </section>
+  </div>
+</template>
+
 
 <style scoped>
-
-.background {
-  position: relative;
-  height: 50vh;
-  /* transition: all 0.5s ease-in-out; */
-  transform-origin: center center;
-  /* transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); */
-  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-
-  background: url('../assets/homebg.png') center/cover no-repeat;
-
-  background-color: rgba(111, 114, 121, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-
-  z-index: 1;
-  overflow: hidden;
-  min-height: 250px;
-  /* border-radius:10px; */
-  display: flex;
-  align-items:center;
-  justify-content: center;
-
-}
-
-.overlay {
-  text-align: center;
-  background: transparent;
-  padding: 2rem;
-  border-radius: 1rem;
-}
-
 .content {
-  background-color: var(--main-bg);
+  background-color: transparent;
+  margin-top: 150px;
   height: 100;
   position: relative;
   z-index: 2;
-  margin-top: -40px;
   border-radius: 10px 10px 0 0;
 
-}
-
-.content.nonBg {
-  background-color: transparent;
-  margin-top: 150px;
 }
 
 .content-inner {
@@ -229,7 +159,7 @@ const getFontSize = (count: number) => {
   --col3: 0;
 }
 
-.morebtn:hover + .content-inner{
+.morebtn:hover+.content-inner {
   --col1: 20%
 }
 
@@ -253,33 +183,34 @@ const getFontSize = (count: number) => {
   margin-top: -80px;
 }
 
-.content-headline{
+.content-headline {
   display: flex;
   flex-direction: row;
 }
 
-.search{
+.search {
   margin-bottom: 0.5rem;
 }
 
-.content-hide{
+.content-hide {
   margin-top: -80px;
 }
 
-.packs{
+.packs {
   background-color: var(--main-border);
   min-height: 50%;
   position: sticky;
   top: 66 px;
-  align-self: flex-start; 
+  align-self: flex-start;
   border-radius: 10px;
 }
 
-.morebtn{
+.morebtn {
   /* display: none; */
   position: fixed;
   top: 66px;
-  left: calc(50% - 600px - 60px);  /* 600 = 1200/2; 60 是按钮距离内容的偏移 */
+  left: calc(50% - 600px - 60px);
+  /* 600 = 1200/2; 60 是按钮距离内容的偏移 */
 }
 
 
@@ -324,25 +255,24 @@ const getFontSize = (count: number) => {
     flex-direction: column-reverse;
   }
 
-  .side{
+  .side {
     align-items: stretch;
     overflow: initial;
     margin-top: 0;
     flex-direction: row-reverse;
   }
 
-  .profile{
+  .profile {
     margin-top: 0;
   }
 
-  .side-list{
+  .side-list {
     flex: 1;
   }
 
-  .content-main{
+  .content-main {
     margin-top: 0;
   }
 
 }
-
 </style>

@@ -26,6 +26,10 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+      'ebrain-ui': path.resolve(__dirname, '../ebrain-ui-vue/')
     },
   },
+  optimizeDeps: {
+    exclude: ['ebrain-ui']
+  }
 })

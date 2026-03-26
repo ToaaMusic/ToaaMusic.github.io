@@ -6,7 +6,9 @@
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
 
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "ebrain-ui": ["../ebrain-ui-vue/src/index.ts"],
+      "ebrain-ui/*": ["../ebrain-ui-vue/*"]
     }
   }
 }

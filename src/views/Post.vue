@@ -1,7 +1,7 @@
 <template>
   <div class="post-container" v-fade v-if="currentPost" :view-transition-name="`post-${currentPost.md_url}`">
     <div class="post-main">
-      <div class="post"> 
+      <div class="post">
         <div class="meta">
           <h1>{{ currentPost.title }}</h1>
           <div class="meta-info">
@@ -10,13 +10,8 @@
             </IconCard>
 
             <IconCard v-if="currentPost.tags && currentPost.tags.length">
-              <a
-                style="margin-left: 0.5rem;"
-                v-for="tag in currentPost.tags"
-                :key="tag"
-                href="javascript:void(0)"
-                @click="filterByTag(tag)"
-              >
+              <a style="margin-left: 0.5rem;" v-for="tag in currentPost.tags" :key="tag" href="javascript:void(0)"
+                @click="filterByTag(tag)">
                 {{ '#' + tag }}
               </a>
             </IconCard>
@@ -31,19 +26,12 @@
       </div>
 
       <div class="post-footer">
-        <router-link
-          v-if="prevPost"
-          :to="{ name: 'post', params: { slug: prevPost.md_url } }"
-          class="router-link left"
-        >
+        <router-link v-if="prevPost" :to="{ name: 'post', params: { slug: prevPost.md_url } }" class="router-link left">
           ← {{ prevPost.title }}
         </router-link>
 
-        <router-link
-          v-if="nextPost"
-          :to="{ name: 'post', params: { slug: nextPost.md_url } }"
-          class="router-link right"
-        >
+        <router-link v-if="nextPost" :to="{ name: 'post', params: { slug: nextPost.md_url } }"
+          class="router-link right">
           {{ nextPost.title }} →
         </router-link>
       </div>
@@ -72,24 +60,20 @@
 
     </div>
     <div class="post-side">
-      <Toc :headings="headings"/>
+      <Toc :headings="headings" />
       <div class="post-likes">
-        <div
-          class="svgbtn"
-          :class="{ liked: hasLiked }"
-          @click="like"
-        >
+        <div class="svgbtn" :class="{ liked: hasLiked }" @click="like">
           <LikeIcon />
           <span>{{ likeCount }}</span>
         </div>
-        
+
         <div class="svgbtn" @click="goToComment">
-          <CommentIcon/>{{ currentPost.class }}
+          <CommentIcon />{{ currentPost.class }}
         </div>
-        
+
       </div>
     </div>
-    
+
   </div>
   <div v-else class="loading">加载中或文章不存在</div>
 </template>
@@ -98,8 +82,8 @@
 import { onMounted, computed, watch, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePostStore } from '@/stores/postStore'
-import md from '@/utils/md'
 import { supabase } from '@/assets/lib/supabase'
+import md from '@/utils/md'
 import Toc from '@/components/Toc.vue'
 import IconCard from '@/components/IconCard.vue'
 import CategoryIcon from '@/components/icons/CategoryIcon.vue'
@@ -173,7 +157,7 @@ const loadPost = async (slug: string) => {
       const html = md.render(data.content)
       postStore.setContent(post.id, html)
       currentPost.value.content = html
-    }else {
+    } else {
       try {
         const res = await fetch(`https://enhiucyodopknrbdtswy.supabase.co/storage/v1/object/public/posts/${post.md_url}.md`)
         const text = await res.text()
@@ -184,10 +168,10 @@ const loadPost = async (slug: string) => {
         console.error('加载文章内容失败', e)
       }
     }
-  }else{
+  } else {
     currentPost.value.content = md.render(post.content);
   }
-  
+
   const { prev, next } = postStore.getPrevNext(slug)
   prevPost.value = prev
   nextPost.value = next
@@ -222,7 +206,7 @@ const sendComment = async () => {
   const { error } = await supabase.from('comments').insert({
     post_id: currentPost.value.id,
     content: text,
-    user_ip: '游客', 
+    user_ip: '游客',
   })
 
   if (!error) {
@@ -281,18 +265,18 @@ const like = async () => {
 }
 
 
-const goToComment = () =>{
+const goToComment = () => {
 
 }
 </script>
 
 <style scoped>
-.post-container{
+.post-container {
   gap: 1rem;
   display: flex;
-  align-self: flex-start; 
+  align-self: flex-start;
   flex-direction: row;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   margin-top: 70px;
 }
@@ -301,19 +285,19 @@ const goToComment = () =>{
   width: 70%;
 }
 
-.post-side{
+.post-side {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 1rem;
   position: sticky;
-  top: 70px; 
+  top: 70px;
   width: 30%;
-  align-self: flex-start; 
+  align-self: flex-start;
 }
 
-.post-likes{
+.post-likes {
   display: flex;
   flex-direction: column;
   width: max-content;
@@ -323,12 +307,14 @@ const goToComment = () =>{
   gap: 0.5rem;
 }
 
-.post{
-  background-color: transparent;/*var(--main-border) */
+.post {
+  background-color: transparent;
+  /*var(--main-border) */
   border-radius: 10px;
-  padding: 2rem 0.2rem ;
+  padding: 2rem 0.2rem;
 }
-.post-footer{
+
+.post-footer {
   gap: 1rem;
   max-width: 750px;
   margin: 0 auto;
@@ -338,23 +324,28 @@ const goToComment = () =>{
   margin: 2rem;
   font-size: 0.9rem;
 }
-.router-link{
+
+.router-link {
   width: 50%;
   font-size: 1rem;
   padding: 1.5rem 2rem;
   border-radius: 24px;
   background-color: var(--main-border);
 }
+
 .router-link:hover {
   background-color: var(--main-hover);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
+
 .router-link.left {
   margin-right: auto;
 }
+
 .router-link.right {
   margin-left: auto;
 }
+
 .meta {
   display: flex;
   flex-direction: column;
@@ -362,20 +353,23 @@ const goToComment = () =>{
   padding: 0 2rem;
   font-size: 0.85rem;
 }
-.meta-info{
+
+.meta-info {
   display: flex;
   flex-direction: row;
 }
+
 .loading {
   padding: 2rem;
   text-align: center;
 }
 
-.comment{
+.comment {
   margin: 2rem;
   margin-top: 2.5rem;
   max-width: 1000px;
 }
+
 .comment-list {
   display: flex;
   flex-direction: column;
@@ -438,9 +432,8 @@ const goToComment = () =>{
     display: none;
   }
 
-  .post-main{
+  .post-main {
     width: 100%;
   }
 }
-
 </style>

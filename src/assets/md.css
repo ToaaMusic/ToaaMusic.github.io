@@ -17,13 +17,13 @@
 }
 
 .md p{
+  padding-top: 1rem;
   line-height: 1.6;
 }
 
 .md code {
   background: transparent;
   border-radius: 4px;
-  font-family: 'WinKai';
   line-height: 1.6;
 }
 
@@ -37,6 +37,11 @@
   overflow-x: auto;
 }
 
+.md pre, .md code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace !important;
+  font-variant-ligatures: none; 
+  white-space: pre !important;
+}
 
 
 .md hr {
