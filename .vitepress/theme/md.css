@@ -1,0 +1,63 @@
+@import './base.css';
+
+.md {
+  /* line-height: 1.6; */
+  padding: 2rem;
+  padding-top: 1.5rem;
+  border-radius: 10px;
+  
+}
+
+.md h1, 
+.md h2, 
+.md h3 {
+  font-weight: bold;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.md p{
+  padding-top: 1rem;
+  line-height: 1.6;
+}
+
+.md code {
+  background: transparent;
+  border-radius: 4px;
+  line-height: 1.6;
+}
+
+.md pre {
+  background: var(--main-border);
+  color: #f8f8f2;
+  padding: 1em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.md pre, .md code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace !important;
+  font-variant-ligatures: none; 
+  white-space: pre !important;
+}
+
+
+.md hr {
+  border: none;
+  border-top: 3px dashed var(--main);
+  margin: 2rem 0;
+}
+.md blockquote {
+  border-left: 4px solid var(--main);
+  padding-left: 1em;
+  margin: 1em 0;
+}
+
+.md img {
+  max-width: 100%;
+  border-radius: 24px;
+  display: block;
+  margin: 1rem auto;
+}

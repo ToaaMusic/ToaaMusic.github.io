@@ -1,0 +1,243 @@
+@import './base.css';
+
+
+html {
+  overflow-y: scroll; /* 始终保留滚动功能 */
+}
+
+[contenteditable="true"] {
+  caret-color: transparent;
+}
+
+h1,h2,h3,h4,h5,h6,p,span,.router-link {
+  color: rgb(226, 221, 210);
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+a:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.router-link{
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.1rem 0.2rem;
+  border-radius: 4px;
+  transition: all 0.1s;
+}
+
+.tag{
+  color: var(--main);
+}
+
+button{
+  background-color: transparent;
+}
+
+button:hover{
+  background-color: var(--main-hover);
+}
+/* #f3f3f3 */
+input{
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--main-border);
+  color: var(--main);
+  font-size: 1rem;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--main);
+}
+
+
+.list {
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  container-type: inline-size;
+}
+
+.svgbtn{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--main);
+  padding: 5px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease;
+}
+
+.svgbtn:hover {
+  background-color: var(--main-hover);
+  cursor: pointer;
+}
+
+svg{
+  width: 20px;
+  height: 20px;
+}
+
+._before-line {
+  position: relative;
+  padding-left: 16px;
+}
+
+._before-line::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 20px;
+  background-color: var(--main);
+  border-radius: 4px;
+} 
+
+/* animation */
+
+.bounce-in {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}
+
+.bounce-in.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.bounce-in-enter-active {
+  animation: bounceInUp 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}
+.bounce-in-leave-active {
+  animation: fadeOutDown 0.3s ease;
+}
+.bounce-in-enter-from {
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+}
+.bounce-in-enter-to {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.bounce-in-leave-from {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.bounce-in-leave-to {
+  opacity: 0;
+  transform: translateY(10px) scale(0.95);
+}
+
+
+@keyframes bounceInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(60%) scale(0.8);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1.05);
+  }
+  80% {
+    transform: translateY(4px) scale(0.98);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.bounce-out-enter-active {
+  animation: avatarIn 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}
+.bounce-out-leave-active {
+  animation: avatarOut 0.3s ease-in;
+}
+
+.bounce-out-enter-from {
+  opacity: 0;
+  transform: translateY(-50px) scale(0.9);
+}
+.bounce-out-leave-to {
+  opacity: 0;
+  transform: translateY(-30px) scale(0.95);
+}
+
+@keyframes avatarIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.8);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(10px) scale(1.05);
+  }
+  80% {
+    transform: translateY(-4px) scale(0.98);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes avatarOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+  }
+}
+
+
+
+/* 隐藏默认滚动条轨道 */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* 透明的轨道，不挤页面 */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* 浮在页面上的滚动条手柄 */
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+/* 鼠标悬浮页面时滚动条更明显 */
+body:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5);
+}

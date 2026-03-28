@@ -1,4 +1,26 @@
-# Logs
+# --- 系统与依赖 ---
+node_modules/
+.DS_Store
+Thumbs.db
+*.local
+
+# --- 构建产物 ---
+dist/
+dist-ssr/
+*.tsbuildinfo
+# VitePress 默认打包输出目录
+.vitepress/dist/
+
+# --- 核心：缓存文件 (务必忽略) ---
+# VitePress 和 Vite 的预构建依赖缓存，这是导致你项目臃肿和同步冲突的罪魁祸首
+.vitepress/cache/
+.vitepress/.temp/
+.eslintcache
+.stylelintcache
+# pnpm 缓存相关（如果配置了本地 store）
+.pnpm-debug.log*
+
+# --- 日志与调试 ---
 logs
 *.log
 npm-debug.log*
@@ -6,28 +28,31 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+bun-debug.log*
 
-node_modules
-.DS_Store
-dist
-dist-ssr
-coverage
-*.local
-
+# --- 测试与覆盖率 ---
+coverage/
 /cypress/videos/
 /cypress/screenshots/
+.nyc_output
 
-# Editor directories and files
+# --- 编辑器配置 ---
 .vscode/*
 !.vscode/extensions.json
-.idea
+!.vscode/launch.json
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+*.bak
 
-*.tsbuildinfo
-
+# --- 环境配置 ---
 .env
 .env.*
+!.env.example
+
+# --- 本地开发特定 ---
+# 如果你在根目录下有临时打包测试文件
+*.tgz
