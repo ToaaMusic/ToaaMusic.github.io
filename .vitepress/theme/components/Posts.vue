@@ -13,12 +13,7 @@ const router = useRouter()
 const showAvatarInNavbar = ref(false)
 const triggerTop = ref(0)
 const loading = ref(false)
-
-const selectedTag = computed(() => {
-  if (typeof window === 'undefined') return undefined
-  const params = new URLSearchParams(window.location.search)
-  return params.get('tag') || undefined
-})
+const selectedTag = ref<string | undefined>(undefined)
 
 const filteredPosts = computed(() => {
   if (!selectedTag.value) return allPosts
@@ -69,6 +64,8 @@ const handleScroll = () => {
 }
 
 onMounted(async () => {
+  const params = new URLSearchParams(window.location.search)
+  selectedTag.value = params.get('tag') || undefined
   await nextTick()
   
   const trigger = document.getElementById('trigger-element')

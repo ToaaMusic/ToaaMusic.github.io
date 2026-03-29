@@ -8,14 +8,14 @@ else
     exit 0
 fi
 
-rm -rf dist
-git clone -b gh-pages https://github.com/toaamusic/toaamusic.github.io.git dist
+rm -rf .vitepress/dist
+git clone -b gh-pages https://github.com/toaamusic/toaamusic.github.io.git .vitepress/dist
 
 echo "building project..."
 
-npm run build
+pnpm run build
 
-cd dist || exit 1
+cd .vitepress/dist || exit 1
 
 git add .
 git commit -m "deploy"

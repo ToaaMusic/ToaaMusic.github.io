@@ -2,8 +2,8 @@
 layout: page
 ---
 
-<PostsView />
+<Posts />
 
 <script setup lang="ts">
-import PostsView from '../.vitepress/theme/components/PostsView.vue'
+import Posts from '../.vitepress/theme/components/Posts.vue'
 </script>

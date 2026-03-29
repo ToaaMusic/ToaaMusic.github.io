@@ -46,7 +46,7 @@ html[data-theme='light'] {
 
 @font-face {
   font-family: 'WenKai';
-  src: url('./ZhuZiAWan2.woff2') format('woff2');
+  src: url('/ZhuZiAWan2.woff2') format('woff2');
   font-display: swap;
 }
 

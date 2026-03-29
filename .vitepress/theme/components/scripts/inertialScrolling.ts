@@ -12,6 +12,7 @@ interface SmoothScrollOptions {
 }
 
 export function inertialScrolling(userOptions: SmoothScrollOptions = {}) {
+  if (typeof window === 'undefined') return
   const isMobile = /Mobi|Android|iPhone|iPad|Tablet/i.test(navigator.userAgent)
   if (isMobile) return // 移动端禁用惯性滚动
 
