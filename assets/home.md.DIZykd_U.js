@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as o}from"./chunks/framework.DoXE6-or.js";const i=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"home.md","filePath":"home.md"}'),a={name:"home.md"};function r(s,c,n,m,p,_){return t(),o("div")}const f=e(a,[["render",r]]);export{i as __pageData,f as default};
