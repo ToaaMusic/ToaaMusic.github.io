@@ -22,6 +22,7 @@ import { h } from 'vue'
 import Layout from './Layout.vue'
 import './main.css'
 import './md.css'
+import EbrainUI from 'ebrain-ui-vue'
 import 'ebrain-ui-vue/dist/index.css'
 
 export default {
@@ -31,6 +32,6 @@ export default {
     })
   },
   enhanceApp({ app, router, siteData }) {
-    // 可以在这里做一些全局的事情，比如注册组件
+    app.use(EbrainUI)
   }
 } satisfies Theme

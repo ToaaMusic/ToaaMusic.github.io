@@ -44,38 +44,14 @@ html[data-theme='light'] {
   font-weight: normal;
 }
 
-/* @font-face {
-  font-family: 'WenKai';
-  src: url('./fonts/LXGWWenKai-Regular.ttf') format('truetype');
-  font-display: swap;
-} */
-
 @font-face {
   font-family: 'WenKai';
-  src: url('./fonts/ZhuZiAWan2.woff2') format('woff2');
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'MaoYuan';
-  src: url('./fonts/MaokenZhuyuanTi.ttf') format('truetype');
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Maru';
-  src: url('./fonts/maru401.ttf') format('truetype');
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'MaoAiXin';
-  src: url('./fonts/猫猫朋友体.ttf') format('truetype');
+  src: url('./ZhuZiAWan2.woff2') format('woff2');
   font-display: swap;
 }
 
 html, body {
-  scroll-behavior: auto !important; /* 防止和原生 smoothScroll 冲突 */
+  scroll-behavior: auto !important;
   will-change: scroll-position;
 }
 

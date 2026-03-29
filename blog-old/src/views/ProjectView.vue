@@ -7,7 +7,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { supabase } from '@/assets/lib/supabase';
+import { supabase } from '@/lib/supabase';
 import { Card, List, Loading } from 'ebrain-ui'
 import router from '@/router';
 

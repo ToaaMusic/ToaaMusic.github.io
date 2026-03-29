@@ -1,6 +1,6 @@
 // 📦 stores/usePostStore.ts
 import { defineStore } from 'pinia'
-import { supabase } from '@/assets/lib/supabase'
+import { supabase } from '@/lib/supabase'
 
 export interface Post {
   id: number

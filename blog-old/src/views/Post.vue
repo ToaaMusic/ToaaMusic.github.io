@@ -82,7 +82,7 @@
 import { onMounted, computed, watch, ref, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePostStore } from '@/stores/postStore'
-import { supabase } from '@/assets/lib/supabase'
+import { supabase } from '@/lib/supabase'
 import { Toc, IconCard, LikeIcon, CommentIcon, CategoryIcon, DateIcon } from 'ebrain-ui'
 import md from '@/utils/md'
 const route = useRoute()

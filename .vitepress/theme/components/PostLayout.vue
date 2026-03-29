@@ -3,7 +3,7 @@ import { computed, onMounted, ref } from 'vue'
 import { useData } from 'vitepress'
 import { Toc, IconCard, CategoryIcon, DateIcon, LikeIcon, CommentIcon } from 'ebrain-ui-vue'
 
-const { frontmatter, page } = useData()
+const { frontmatter } = useData()
 
 const headings = ref<{ id: string; text: string; level: number }[]>([])
 
@@ -62,9 +62,9 @@ const formatDate = (date: any) => {
         </div>
       </div>
 
-      <div class="comment">
+      <!-- <div class="comment">
         <h1 class="_before-line">评论(暂时关闭)</h1>
-      </div>
+      </div> -->
     </div>
 
     <div class="post-side">
@@ -75,7 +75,7 @@ const formatDate = (date: any) => {
           <span>0</span>
         </div>
         <div class="svgbtn">
-          <CommentIcon/>{{ frontmatter.class }}
+          <CommentIcon/> 评论
         </div>
       </div>
     </div>
