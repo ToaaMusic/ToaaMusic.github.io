@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "ToaaM's Blog",
+  title: "ToaaM 的个人博客",
   description: "ToaaM's Blog",
   cleanUrls: true,
   srcDir: './pages',
@@ -37,5 +37,5 @@ export default defineConfig({
       slugify: (s) => s.toLowerCase()
     },
   },
-  
+
 })
