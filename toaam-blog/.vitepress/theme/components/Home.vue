@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { useRouter } from 'vitepress'
 // @ts-ignore
 import { data as allPosts } from './scripts/posts.data'
-import type { CardData } from 'ebrain-ui-vue'
+import type { CardData } from 'ui'
 
 const router = useRouter()
 

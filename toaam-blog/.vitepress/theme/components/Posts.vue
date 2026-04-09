@@ -2,8 +2,8 @@
 import { onMounted, computed, onBeforeUnmount, ref, nextTick } from 'vue'
 import { useData, useRouter } from 'vitepress'
 import { useDevice } from './scripts/useDevice'
-import { List, Avatar, MoreIcon } from 'ebrain-ui-vue'
-import type { CardData } from 'ebrain-ui-vue'
+import { List, Avatar, MoreIcon } from 'ui'
+import type { CardData } from 'ui'
 // @ts-ignore
 import { data as allPosts } from './scripts/posts.data'
 

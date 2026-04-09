@@ -1,0 +1,22 @@
+{
+  "name": "toaam-blog",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "ToaaM",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vitepress dev .",
+    "build": "vitepress build .",
+    "preview": "vitepress preview ."
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.4",
+    "vue": "^3.5.30"
+  },
+  "dependencies": {
+    "ui": "workspace:*"
+  }
+}

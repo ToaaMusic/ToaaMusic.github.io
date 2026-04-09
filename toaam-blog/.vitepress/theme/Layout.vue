@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { ref, watch, onMounted, onUnmounted } from 'vue'
 import { useData, useRoute, useRouter } from 'vitepress'
-import { NavBar, IconCard, FolderIcon, NotesIcon, NavbarConfigClass } from 'ebrain-ui-vue'
+import { NavBar, FolderIcon, NotesIcon } from 'ui'
 import { inertialScrolling } from './components/scripts/inertialScrolling'
 import Footer from './components/Footer.vue'
 import PostLayout from './components/PostLayout.vue'
@@ -34,7 +34,7 @@ const handleNavigate = (path: string) => {
   router.go(path)
 }
 
-const navbarConfig = ref(new NavbarConfigClass({
+const navbarConfig = ref({
   logo: {
     text: 'ToaaM.',
     href: '/',
@@ -47,7 +47,7 @@ const navbarConfig = ref(new NavbarConfigClass({
     visible: false,
   },
   transparentAtTop: true,
-}))
+})
 
 // 防抖的滚动处理
 let scrollTimeout: number | null = null

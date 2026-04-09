@@ -1,6 +1,6 @@
 // posts.data.ts
 import { createContentLoader } from 'vitepress'
-import type { CardData } from 'ebrain-ui-vue'
+import type { CardData } from 'ui'
 
 export default createContentLoader('posts/**/*.md', {
   excerpt: true,

@@ -1,22 +1,21 @@
 {
-  "name": "toaam-blog",
-  "version": "1.0.0",
-  "description": "",
-  "license": "ISC",
-  "author": "ToaaM",
-  "type": "module",
-  "main": "index.js",
+  "name": "blog-monorepo",
+  "private": true,
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "vitepress dev .",
-    "build": "vitepress build .",
-    "preview": "vitepress preview ."
+    "dev": "pnpm --filter ui build && pnpm --filter toaam-blog dev",
+    "build:ui": "pnpm --filter ui build",
+    "build:blog": "pnpm --filter ui build && pnpm --filter toaam-blog build",
+    "build:all": "pnpm --filter ui build && pnpm --filter toaam-blog build",
+    "preview": "pnpm --filter toaam-blog preview",
+    "clean": "rm -rf node_modules && rm -rf */node_modules && rm -rf */dist && rm -rf */.vitepress/dist && rm -rf */.vitepress/cache && rm -rf */.vitepress/.temp",
+    "reinstall": "pnpm clean && pnpm install"
   },
-  "devDependencies": {
-    "vitepress": "^1.6.4",
-    "vue": "^3.5.30"
-  },
-  "dependencies": {
-    "ebrain-ui-vue": "link:../ebrain-ui-vue"
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }

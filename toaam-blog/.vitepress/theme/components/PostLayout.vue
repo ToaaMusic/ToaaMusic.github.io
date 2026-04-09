@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import { useData } from 'vitepress'
-import { Toc, IconCard, CategoryIcon, DateIcon, LikeIcon, CommentIcon } from 'ebrain-ui-vue'
+import { Toc, IconCard, CategoryIcon, DateIcon, LikeIcon, CommentIcon } from 'ui'
 
 const { frontmatter } = useData()
 
@@ -33,7 +33,7 @@ const formatDate = (date: any) => {
 <template>
   <div class="post-container">
     <div class="post-main">
-      <div class="post"> 
+      <div class="post">
         <div class="meta">
           <h1>{{ frontmatter.title }}</h1>
           <div class="meta-info">
@@ -86,7 +86,7 @@ const formatDate = (date: any) => {
 .post-container {
   gap: 1rem;
   display: flex;
-  align-self: flex-start; 
+  align-self: flex-start;
   flex-direction: row;
   max-width: 1200px;
   margin: 0 auto;
@@ -104,9 +104,9 @@ const formatDate = (date: any) => {
   justify-content: space-between;
   gap: 1rem;
   position: sticky;
-  top: 70px; 
+  top: 70px;
   width: 30%;
-  align-self: flex-start; 
+  align-self: flex-start;
 }
 
 .post-likes {
