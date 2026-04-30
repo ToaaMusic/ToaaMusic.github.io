@@ -48,7 +48,7 @@
               v-if="effectiveConfig.avatar?.visible !== false"
               :size="'sm'"
               :img="effectiveConfig.avatar?.src"
-              :avatarClick="effectiveConfig.avatar?.onClick"
+              @click="effectiveConfig.avatar?.onClick?.()"
             />
           </transition>
         </slot>

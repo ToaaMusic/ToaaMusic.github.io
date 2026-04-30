@@ -9,7 +9,9 @@
     }"
       :src="props.img"
       alt="avatar"
-      @click="props.avatarClick()"/>
+      @click="emit('click')"
+      @keydown.enter="emit('click')"
+      @keydown.space.prevent="emit('click')"/>
     <h1 v-if="size === 'la'">{{ props.name }}</h1>
     <div>
     </div>
@@ -17,27 +19,19 @@
 </template>
 
 <script setup lang="ts">
-//import defaultAvatar from '../assets/default-avatar.svg'
-const props = defineProps({
-  size: {
-    type: String,
-    default: 'la',
-    validator: (val: string) => ['la', 'sm'].includes(val)
-  },
-  img: {
-    type: String,
-    default: "https://enhiucyodopknrbdtswy.supabase.co/storage/v1/object/public/avatars/0acac23b-b02b-43f8-9087-f01f16365e98/1.jpg"
-  },
-  name: {
-    type: String,
-    default: ''
-  },
-  avatarClick: {
-    type: Function,
-    default: null
-  }
+const props = withDefaults(defineProps<{
+  size?: 'la' | 'sm'
+  img?: string
+  name?: string
+}>(), {
+  size: 'la',
+  img: "https://enhiucyodopknrbdtswy.supabase.co/storage/v1/object/public/avatars/0acac23b-b02b-43f8-9087-f01f16365e98/1.jpg",
+  name: '',
 })
 
+const emit = defineEmits<{
+  click: []
+}>()
 </script>
 
 <style scoped>

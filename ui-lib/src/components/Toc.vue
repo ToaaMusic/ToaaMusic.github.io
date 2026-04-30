@@ -14,7 +14,11 @@
       ref="tocItems"
       :class="['toc-item', { active: heading.id === activeId }]"
       :style="{ paddingLeft: `${(heading.level - 2) * 1}rem` }"
+      role="button"
+      :tabindex="0"
       @click="scrollToHeading(heading.id)"
+      @keydown.enter="scrollToHeading(heading.id)"
+      @keydown.space.prevent="scrollToHeading(heading.id)"
     >
       {{ heading.text }}
     </div>

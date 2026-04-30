@@ -3,7 +3,10 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, onBeforeUnmount } from 'vue'
+
+let rafId: number | null = null
+let resizeHandler: (() => void) | null = null
 
 onMounted(() => {
   const style = document.createElement('style')
@@ -23,13 +26,14 @@ onMounted(() => {
       z-index: -1;
     }
   `
+  style.setAttribute('data-bge', '')
   document.head.appendChild(style)
 
   const canvas = document.getElementById('universe') as HTMLCanvasElement
 
   let width = window.innerWidth
   let height = window.innerHeight
-  let particlesCount = 0.216 * width | 0
+  let particlesCount = 0
   let ctx: CanvasRenderingContext2D | null = null
   const speed = 0.05
 
@@ -169,19 +173,33 @@ onMounted(() => {
       p.fadeOut()
       p.draw()
     })
-    window.requestAnimationFrame(animate)
+    rafId = window.requestAnimationFrame(animate)
   }
 
   if (canvas) {
     ctx = canvas.getContext('2d')
     resizeCanvas()
-    window.addEventListener('resize', resizeCanvas)
+    resizeHandler = resizeCanvas
+    window.addEventListener('resize', resizeHandler)
 
     for (let j = 0; j < particlesCount; j++) {
       particles.push(createParticle())
     }
 
-    animate()
+    rafId = window.requestAnimationFrame(animate)
   }
+})
+
+onBeforeUnmount(() => {
+  if (rafId) {
+    cancelAnimationFrame(rafId)
+    rafId = null
+  }
+  if (resizeHandler) {
+    window.removeEventListener('resize', resizeHandler)
+    resizeHandler = null
+  }
+  const style = document.querySelector('style[data-bge]')
+  if (style) style.remove()
 })
 </script>

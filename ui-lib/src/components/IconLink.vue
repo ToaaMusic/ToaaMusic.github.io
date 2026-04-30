@@ -5,8 +5,9 @@
 </template>
 
 <script setup lang="ts">
+import type { Component } from 'vue'
 const props = defineProps<{
-  icon?: any
+  icon?: Component
   href?: string
 }>()
 </script>

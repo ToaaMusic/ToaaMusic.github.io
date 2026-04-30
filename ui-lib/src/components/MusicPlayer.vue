@@ -5,12 +5,17 @@
         v-for="(song, index) in songs"
         :key="song.id"
         :class="{ active: index === currentIndex }"
+        role="button"
+        :tabindex="0"
         @click="playSong(index)"
+        @keydown.enter="playSong(index)"
+        @keydown.space.prevent="playSong(index)"
       >
         {{ song.name }} - {{ song.artist }}
       </li>
     </ul>
     <iframe
+      title="音乐播放器"
       :src="currentSrc"
       frameborder="no"
       border="0"

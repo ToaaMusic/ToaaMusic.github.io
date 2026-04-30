@@ -1,5 +1,5 @@
 <template>
-  <div class="card" :class="{ hasImage }" ref="cardRef" :view-transition-name="`post-${data.md_url}`" v-fade="{ offset: '20px', duration: 500 }">
+  <div class="card" :class="{ hasImage: data.image_url }" ref="cardRef" :view-transition-name="`post-${data.md_url}`" v-fade="{ offset: '20px', duration: 500 }">
     <PinIcon class="pin" v-if="data.top"/>
     <div
       class="card-image"
@@ -9,11 +9,11 @@
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat'
       }"
-      v-if="hasImage"
+      v-if="data.image_url"
     ></div>
 
     <div class="card-content">
-      <h3 class="card-title _before-line">{{ data.title }}</h3>
+      <h3 class="card-title">{{ data.title }}</h3> <!-- _before-line -->
       <p class="card-summary">{{ data.summary }}</p>
       <div class="card-footer">
         <div class="meta-info">
@@ -22,14 +22,14 @@
           </IconCard>
 
           <IconCard v-if="data.tags && data.tags.length">
-            <a
+            <button
               style="margin-left: 0.5rem;"
               v-for="tag in data.tags"
               :key="tag"
-              href="javascript:void(0)"
+              class="tag-btn"
             >
               {{ '#' + tag }}
-            </a>
+            </button>
 
           </IconCard>
         </div>
@@ -40,13 +40,17 @@
       </div>
 
     </div>
-    <div v-show="data.class">
-
-    </div>
+    <div v-show="data.class"></div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import IconCard from './IconCard.vue';
+import CategoryIcon from '../icons/CategoryIcon.vue';
+import DateIcon from '../icons/DateIcon.vue';
+import PinIcon from '../icons/PinIcon.vue';
+
 export interface CardData {
   id: string | number
   md_url: string
@@ -59,9 +63,7 @@ export interface CardData {
   top?: boolean
 }
 
-const hasImage = true
-
-defineProps<{ data: CardData }>()
+const props = defineProps<{ data: CardData }>()
 const formatDate = (iso?: string) => {
   if (!iso) return ''
   return new Date(iso).toLocaleDateString('zh-CN', {
@@ -71,23 +73,6 @@ const formatDate = (iso?: string) => {
   })
 }
 
-import { ref, onMounted, onBeforeUnmount } from 'vue'
-import IconCard from './IconCard.vue';
-import CategoryIcon from '../icons/CategoryIcon.vue';
-import DateIcon from '../icons/DateIcon.vue';
-import PinIcon from '../icons/PinIcon.vue';
-
-// const route = useRoute()
-// const router = useRouter()
-
-// const filterByTag = (tag: string) => {
-//   if (route.query.tag === tag) {
-//     const { tag, ...rest } = route.query
-//     router.replace({ query: rest })
-//   } else {
-//     router.replace({ query: { ...route.query, tag } })
-//   }
-// }
 const cardRef = ref<HTMLElement | null>(null)
 const bgPos = ref('center')
 
@@ -131,7 +116,7 @@ onBeforeUnmount(() => {
   background-color: var(--main-border);
   border-radius: 10px;
   padding: 15px;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin-bottom: 1rem;
   position: relative;
   width: 100%;
@@ -150,7 +135,7 @@ onBeforeUnmount(() => {
   position: absolute;
   top: 0;
   bottom: 0;
-  transition: all 0.3s ease;
+  transition: width 0.5s ease, height 0.5s ease;
 }
 
 .card-image {
@@ -179,16 +164,6 @@ onBeforeUnmount(() => {
   width: 100%;
 }
 
-/* .card:hover .card-summary,
-.card:hover .date,
-.card:hover .tags,
-.card:hover .category,
-.card:hover .card-title {
-
-
-} */
-
-/* 内容样式 */
 .card-title {
   margin-bottom: 0.5rem;
   font-weight: bold;
@@ -238,8 +213,16 @@ onBeforeUnmount(() => {
   top: 0;
 }
 
+.tag-btn {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+}
 
-/* 响应式竖向布局 */
 @media (max-width: 768px) {
   .card {
     height: 250px;
@@ -251,7 +234,7 @@ onBeforeUnmount(() => {
     right: 0;
     width: 100%;
     height: 50%;
-    transition: all 0.6s ease;
+    transition: height 0.6s ease;
   }
 
   .card-image {
@@ -282,7 +265,7 @@ onBeforeUnmount(() => {
     right: 0;
     width: 100%;
     height: 50%;
-    transition: all 0.6s ease;
+    transition: height 0.6s ease;
   }
 
   .card-image {

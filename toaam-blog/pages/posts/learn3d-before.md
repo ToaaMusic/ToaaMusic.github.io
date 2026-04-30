@@ -7,6 +7,7 @@ tags: [
   "OpenGL"
 ]
 image_url: https://enhiucyodopknrbdtswy.supabase.co/storage/v1/object/public/resources/img/2026-01-04%20234603.png
+class: 3D图形渲染
 summary: 系列将让你高度理解3d图形渲染的本质和原理，使用OpenGL规范构建自己的3D渲染引擎。
 top: false
 ---

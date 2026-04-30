@@ -2,26 +2,25 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import Card from './Card.vue'
+import type { CardData } from './Card.vue'
 import Loading from './Loading.vue';
 
 const topItems = computed(() => props.items.filter(i => !!i.top))
 
 const items = computed(() => props.items.filter(i => !i.top))
 
-//加默认值防止为空
-//const emit = defineEmits(['click-item'])
 const emit = defineEmits<{
-  (e: 'click-item', item: any): void
+  (e: 'click-item', item: CardData): void
 }>()
 
 const props = withDefaults(defineProps<{
-  items: any[]
+  items: CardData[]
   loading?: boolean
-  itemKey?: (item: any) => string | number
+  itemKey?: (item: CardData) => string | number
 }>(), {
   items: () => [],
   loading: false,
-  itemKey: (item: any) => item.id ?? item.md_url ?? item.name ?? item.content ?? JSON.stringify(item)
+  itemKey: (item: CardData) => item.id ?? item.md_url ?? JSON.stringify(item)
 })
 </script>
 
@@ -39,14 +38,14 @@ const props = withDefaults(defineProps<{
           v-for="item in topItems"
           :key="itemKey(item)"
           :data="item"
-          @click="() => $emit('click-item', item)"
+          @click="() => emit('click-item', item)"
         />
       </div>
       <Card
         v-for="item in items"
         :key="itemKey(item)"
         :data="item"
-        @click="() => $emit('click-item', item)"
+        @click="() => emit('click-item', item)"
       />
     </template>
   </div>

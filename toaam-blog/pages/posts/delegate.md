@@ -7,6 +7,7 @@ tags: [
   "编程"
 ]
 image_url: https://enhiucyodopknrbdtswy.supabase.co/storage/v1/object/public/resources/img/get-started-c-sharp-part-1-social.png
+class: C#基础教程
 summary: 委托的存在使得函数本身也可以作为参数传递。\n此文分享如何理解以及熟练运用C#中的委托类型，日后会发展为合集“C#基础教程”的一部分
 top: false
 ---

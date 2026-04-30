@@ -7,6 +7,7 @@ tags: [
   "编程"
 ]
 image_url: https://enhiucyodopknrbdtswy.supabase.co/storage/v1/object/public/resources/img/get-started-c-sharp-part-1-social.png
+class: C#基础教程
 summary: 本文将作为“C#基础教程”合集的开篇
 top: false
 ---

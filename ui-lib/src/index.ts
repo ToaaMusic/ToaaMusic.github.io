@@ -1,4 +1,3 @@
-// src/index.ts
 import type { App } from 'vue'
 
 import fade from './directives/fade'
@@ -28,19 +27,15 @@ import CategoryIcon from './icons/CategoryIcon.vue'
 import FolderIcon from './icons/FolderIcon.vue'
 import NotesIcon from './icons/NotesIcon.vue'
 
-import { NavbarConfigClass } from './types/navbar'
-
 export type { CardData } from './components/Card.vue'
 export type { NavbarConfig, NavItem } from './types/navbar'
 
-// 按需导出
-export { List, Card, IconCard, IconLink, Link, Loading, Avatar, KvCard, 
+export { List, Card, IconCard, IconLink, Link, Loading, Avatar, KvCard,
   NavBar, FooterBar, ThemeSwitcher, Bge, MusicPlayer, Toast, Toc,
   MoreIcon, DateIcon, LikeIcon, CommentIcon, CategoryIcon,
-  FolderIcon, NotesIcon, NavbarConfigClass,
- }
+  FolderIcon, NotesIcon,
+}
 
-// 作为插件使用：app.use(EbrainUI)
 export default {
   install(app: App) {
     app.directive('fade', fade)

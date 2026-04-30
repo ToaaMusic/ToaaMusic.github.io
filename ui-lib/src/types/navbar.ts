@@ -24,6 +24,9 @@ export interface NavbarConfig {
   transparentAtTop?: boolean
 }
 
+/**
+ * @deprecated Use NavbarConfig interface directly instead
+ */
 export class NavbarConfigClass implements NavbarConfig {
   logo?: NavbarConfig['logo']
   items: NavItem[] = []
