@@ -3,10 +3,9 @@ layout: post
 title: Archlinux + hyprland初次使用记录
 date: 2025-11-18 05:18:47+00
 tags: [
-  "OS",
   "Linux"
 ]
-class: 记录
+class: "linux"
 image_url: https://enhiucyodopknrbdtswy.supabase.co/storage/v1/object/public/resources/img/89596288_p0.png
 summary: 
 top: true

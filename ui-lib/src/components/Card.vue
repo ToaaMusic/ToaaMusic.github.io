@@ -1,36 +1,24 @@
 <template>
-  <div class="card" :class="{ hasImage: data.image_url }" ref="cardRef" :view-transition-name="`post-${data.md_url}`" v-fade="{ offset: '20px', duration: 500 }">
+  <div class="card" :class="{ noImage: !data.image_url }" ref="cardRef" :view-transition-name="`post-${data.md_url}`" v-fade="{ offset: '20px', duration: 500 }">
     <PinIcon class="pin" v-if="data.top"/>
-    <div
-      class="card-image"
-      :style="{
-        backgroundImage: `url('${data.image_url}')`,
-        backgroundPosition: bgPos,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat'
-      }"
-      v-if="data.image_url"
-    ></div>
-
+    <div class="card-image" :style="cardImageStyle" v-if="data.image_url"></div>
     <div class="card-content">
       <h3 class="card-title">{{ data.title }}</h3> <!-- _before-line -->
       <p class="card-summary">{{ data.summary }}</p>
       <div class="card-footer">
         <div class="meta-info">
-          <IconCard :icon="CategoryIcon">
+          <IconCard v-show="data.class" :icon="CategoryIcon">
             <span>{{ data.class }}</span>
           </IconCard>
 
           <IconCard v-if="data.tags && data.tags.length">
             <button
-              style="margin-left: 0.5rem;"
               v-for="tag in data.tags"
               :key="tag"
               class="tag-btn"
             >
               {{ '#' + tag }}
             </button>
-
           </IconCard>
         </div>
 
@@ -38,14 +26,12 @@
           <span>{{ formatDate(data.created_at || '') }}</span>
         </IconCard>
       </div>
-
     </div>
-    <div v-show="data.class"></div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, computed, onBeforeUnmount } from 'vue'
 import IconCard from './IconCard.vue';
 import CategoryIcon from '../icons/CategoryIcon.vue';
 import DateIcon from '../icons/DateIcon.vue';
@@ -93,6 +79,13 @@ const updateBackground = (e: MouseEvent) => {
 const resetBackground = () => {
   bgPos.value = 'center'
 }
+
+const cardImageStyle = computed(() => ({
+  backgroundImage: `url('${props.data.image_url}')`,
+  backgroundPosition: bgPos.value,
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat'
+}))
 
 onMounted(() => {
   const el = cardRef.value
@@ -159,6 +152,11 @@ onBeforeUnmount(() => {
   z-index: 2;
 }
 
+.card.noImage .card-content {
+  left: 0;
+  width: 100%;
+}
+
 .card:hover .card-content,
 .card:hover .card-image {
   width: 100%;
@@ -175,7 +173,7 @@ onBeforeUnmount(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.5rem;
+  gap: 0.2rem;
   margin-top: auto;
   padding-right: 1rem;
   font-size: 0.75rem;
@@ -185,7 +183,7 @@ onBeforeUnmount(() => {
   display: flex;
   flex-wrap: nowrap;
   overflow: hidden;
-  gap: 0.5rem;
+  gap: 0.2rem;
   min-width: 0;
   flex: 1;
 }
@@ -214,6 +212,7 @@ onBeforeUnmount(() => {
 }
 
 .tag-btn {
+  margin-left: 0.5rem;
   background: none;
   border: none;
   color: inherit;
@@ -247,6 +246,10 @@ onBeforeUnmount(() => {
     padding: 1rem;
   }
 
+  .card.noImage .card-content {
+    height: 100%;
+  }
+
   .card:hover .card-image,
   .card:hover .card-content {
     height: 100%;
@@ -276,6 +279,10 @@ onBeforeUnmount(() => {
     top: auto;
     bottom: 0;
     padding: 1rem;
+  }
+
+  .card.noImage .card-content {
+    height: 100%;
   }
 
   .card:hover .card-image,

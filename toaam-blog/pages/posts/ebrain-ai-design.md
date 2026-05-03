@@ -7,7 +7,7 @@ tags: [
   "编程",
   "日志"
 ]
-image_url: https://enhiucyodopknrbdtswy.supabase.co/storage/v1/object/public/resources/img/135280136_p2%20(1).png
+image_url: 
 summary: 分享项目EbrainAI的初期设计灵感
 top: false
 ---
