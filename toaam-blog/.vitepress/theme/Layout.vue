@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-
     <NavBar v-if="showNavBar" :config="navbarConfig" @navigate="handleNavigate" />
 
     <div class="content">
