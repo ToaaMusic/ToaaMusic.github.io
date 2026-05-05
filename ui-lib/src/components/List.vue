@@ -30,10 +30,10 @@ const props = withDefaults(defineProps<{
       <Loading/>
     </slot>
     <template v-else>
-      <div v-if="items.length === 0">
+      <div v-if="items.length === 0 || topItems.length === 0">
         <slot name="empty">加载失败或者根本没有</slot>
       </div>
-      <div v-if="topItems.length != 0" style="border-bottom: 2px solid #e8d5ff; margin-bottom: 1rem;">
+      <div v-if="topItems.length != 0">
         <Card
           v-for="item in topItems"
           :key="itemKey(item)"
