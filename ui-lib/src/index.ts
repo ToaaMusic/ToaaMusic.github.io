@@ -12,8 +12,6 @@ import Avatar from './components/Avatar.vue'
 import KvCard from './components/KvCard.vue'
 
 import NavBar from './components/unique/NavBar.vue'
-import FooterBar from './components/unique/FooterBar.vue'
-import ThemeSwitcher from './components/unique/ThemeSwitcher.vue'
 import Bge from './components/unique/Bge.vue'
 import MusicPlayer from './components/MusicPlayer.vue'
 import Toast from './components/Toast.vue'
@@ -31,7 +29,7 @@ export type { CardData } from './components/Card.vue'
 export type { NavbarConfig, NavItem } from './types/navbar'
 
 export { List, Card, IconCard, IconLink, Link, Loading, Avatar, KvCard,
-  NavBar, FooterBar, ThemeSwitcher, Bge, MusicPlayer, Toast, Toc,
+  NavBar, Bge, MusicPlayer, Toast, Toc,
   MoreIcon, DateIcon, LikeIcon, CommentIcon, CategoryIcon,
   FolderIcon, NotesIcon,
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <NavBar v-if="showNavBar" :config="navbarConfig" @navigate="handleNavigate" />
+    <NavBar v-if="showNavBar && frontmatter.layout !== 'home'" :config="navbarConfig" @navigate="handleNavigate" />
 
     <div class="content">
       <div v-if="frontmatter.layout === 'post'">
@@ -9,7 +9,7 @@
       <Content v-else />
     </div>
 
-    <Footer />
+    <Footer v-if="frontmatter.layout !== 'home'" style="margin-top: 3rem;" />
   </div>
 </template>
 
@@ -26,8 +26,6 @@ const route = useRoute()
 const router = useRouter()
 
 const showNavBar = ref(true)
-const isPadding = ref(false)
-const showEffect = ref(true)
 
 const handleNavigate = (path: string) => {
   router.go(path)
@@ -63,12 +61,12 @@ const debouncedHandleScroll = () => {
 }
 
 onMounted(() => {
-  inertialScrolling({
-    stepSize: 80,
-    animationTime: 1000,
-    frameRate: 144,
-    keyboardSupport: true
-  })
+  // inertialScrolling({
+  //   stepSize: 80,
+  //   animationTime: 1000,
+  //   frameRate: 144,
+  //   keyboardSupport: true
+  // })
 
   window.addEventListener('scroll', debouncedHandleScroll, { passive: true })
   handleScroll()
@@ -90,7 +88,6 @@ watch(() => route.path, () => {
 
 <style scoped>
 .container {
-  min-height: 200vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;

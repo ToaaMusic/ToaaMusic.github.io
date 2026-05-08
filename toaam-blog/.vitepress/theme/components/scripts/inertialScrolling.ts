@@ -1,5 +1,4 @@
 // src/composables/inertialScrolling.ts
-import { onMounted, onBeforeUnmount } from 'vue'
 
 interface SmoothScrollOptions {
   frameRate?: number

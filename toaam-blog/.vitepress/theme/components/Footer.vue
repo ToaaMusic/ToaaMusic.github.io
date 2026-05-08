@@ -1,6 +1,6 @@
 <template>
     <div class="footer">
-        <p>本站所有资源均来自网络，且仅用于学习用途，未进行商业行为。如有侵权，请联系删除。</p>
+        <!-- <p>本站所有资源均来自网络，且仅用于学习用途，未进行商业行为。如有侵权，请联系删除。</p> -->
         <div>
             <a href="https://icp.gov.moe/?keyword=20251616" target="_blank">萌ICP备20251616号</a>
         </div>

@@ -13,8 +13,6 @@ export const Avatar: Component
 export const KvCard: Component
 
 export const NavBar: Component
-export const FooterBar: Component
-export const ThemeSwitcher: Component
 export const Bge: Component
 export const Toast: Component
 export const MusicPlayer: Component
