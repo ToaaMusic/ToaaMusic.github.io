@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, computed, onBeforeUnmount, ref, nextTick } from 'vue'
-import { useData, useRouter } from 'vitepress'
+import { useRouter } from 'vitepress'
 import { useDevice } from './scripts/useDevice'
 import { List, Avatar, MoreIcon } from 'ui'
 import type { CardData } from 'ui'

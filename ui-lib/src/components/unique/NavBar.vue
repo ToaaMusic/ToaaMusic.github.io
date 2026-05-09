@@ -46,7 +46,7 @@
           <transition name="bounce-in" appear>
             <Avatar
               v-if="effectiveConfig.avatar?.visible !== false"
-              :size="'sm'"
+              :size="'small'"
               :img="effectiveConfig.avatar?.src"
               @click="effectiveConfig.avatar?.onClick?.()"
             />

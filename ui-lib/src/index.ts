@@ -10,6 +10,7 @@ import Link from './components/Link.vue'
 import Loading from './components/Loading.vue'
 import Avatar from './components/Avatar.vue'
 import KvCard from './components/KvCard.vue'
+import Card3D from './components/Card3D.vue'
 
 import NavBar from './components/unique/NavBar.vue'
 import Bge from './components/unique/Bge.vue'
@@ -28,7 +29,7 @@ import NotesIcon from './icons/NotesIcon.vue'
 export type { CardData } from './components/Card.vue'
 export type { NavbarConfig, NavItem } from './types/navbar'
 
-export { List, Card, IconCard, IconLink, Link, Loading, Avatar, KvCard,
+export { List, Card, IconCard, IconLink, Link, Loading, Avatar, KvCard, Card3D,
   NavBar, Bge, MusicPlayer, Toast, Toc,
   MoreIcon, DateIcon, LikeIcon, CommentIcon, CategoryIcon,
   FolderIcon, NotesIcon,

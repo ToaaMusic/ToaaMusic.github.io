@@ -11,6 +11,7 @@ export const Link: Component
 export const Loading: Component
 export const Avatar: Component
 export const KvCard: Component
+export const Card3D: Component
 
 export const NavBar: Component
 export const Bge: Component

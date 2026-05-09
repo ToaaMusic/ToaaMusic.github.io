@@ -79,7 +79,7 @@ body::before {
   inset: 0;
   z-index: -1;
   background-color: var(--main-bg);
-  background-image: var(--bg-grid);
+  /* background-image: var(--bg-grid); */
   background-size: 24px 24px;
   pointer-events: none;
   /* 性能优化 */

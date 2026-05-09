@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useData } from 'vitepress'
 import { Toc, IconCard, CategoryIcon, DateIcon, LikeIcon, CommentIcon } from 'ui'
 

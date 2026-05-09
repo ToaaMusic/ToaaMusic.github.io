@@ -1,32 +1,29 @@
 <template>
-  <div class="profile" :class="{
-    'large': size === 'la',
-    'small': size === 'sm'
-  }">
-    <img class="avatar" :class="{
-      'large': size === 'la',
-      'small': size === 'sm'
-    }"
-      :src="props.img"
+  <div class="profile" :class="size">
+    <img
+      class="avatar"
+      :class="size"
+      :src="img"
       alt="avatar"
-      @click="emit('click')"
-      @keydown.enter="emit('click')"
-      @keydown.space.prevent="emit('click')"/>
-    <h1 v-if="size === 'la'">{{ props.name }}</h1>
-    <div>
-    </div>
+      @click="emit('click')"/>
+
+    <h2 v-if="size !== 'small'">
+      {{ name }}
+    </h2>
   </div>
 </template>
 
 <script setup lang="ts">
-const props = withDefaults(defineProps<{
-  size?: 'la' | 'sm'
+import defaultAvatar from '../assets/default-avatar.svg'
+
+withDefaults(defineProps<{
+  size?: 'large' | 'small'
   img?: string
   name?: string
 }>(), {
-  size: 'la',
-  img: "https://enhiucyodopknrbdtswy.supabase.co/storage/v1/object/public/avatars/0acac23b-b02b-43f8-9087-f01f16365e98/1.jpg",
-  name: '',
+  size: 'large',
+  img: defaultAvatar,
+  name: 'MyName',
 })
 
 const emit = defineEmits<{
@@ -34,11 +31,13 @@ const emit = defineEmits<{
 }>()
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .avatar{
   cursor: pointer;
   border: 2px solid var(--main-border);
 }
+
+// large
 .profile.large {
   padding: 1rem;
   background-color: var(--main-border);
@@ -60,6 +59,7 @@ const emit = defineEmits<{
   object-fit: cover;
 }
 
+// small
 .profile.small {
   height: 100%;
   display: flex;
@@ -79,9 +79,9 @@ const emit = defineEmits<{
   cursor: pointer;
   object-fit: cover;
   transition: transform 0.2s;
-}
 
-.avatar.small:hover {
-  transform: scale(1.05);
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 </style>

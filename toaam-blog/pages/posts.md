@@ -2,8 +2,8 @@
 layout: page
 ---
 
-<Posts />
+<PostList />
 
 <script setup lang="ts">
-import Posts from '../.vitepress/theme/components/Posts.vue'
+import PostList from '../.vitepress/theme/components/PostList.vue'
 </script>
