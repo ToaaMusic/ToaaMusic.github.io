@@ -90,7 +90,6 @@ const formatDate = (date: any) => {
   flex-direction: row;
   max-width: 1200px;
   margin: 0 auto;
-  margin-top: 70px;
 }
 
 .post-main {

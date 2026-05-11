@@ -4,14 +4,14 @@
       <main class="list-container">
         <div class="song-list">
           <button
-            v-for="(song, i) in songs"
-            :key="song.id"
+            v-for="(post, i) in posts"
+            :key="post.id"
             class="song-item"
             :class="{ active: Math.round(currentIndex) === i }"
             :style="itemStyle(i)"
-            @click="select(i)"
+            @click="handleItemClick(i)"
           >
-            <div class="title">{{ song.title }}</div>
+            <div class="title">{{ post.title }}</div>
           </button>
         </div>
       </main>
@@ -21,8 +21,10 @@
 
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
-import { data as songs } from './scripts/posts.data'
+import { data as posts } from './scripts/posts.data'
+import { useRouter } from 'vitepress'
 
+const router = useRouter()
 const currentIndex = ref(0)
 const targetIndex = ref(0)
 let raf = 0
@@ -52,6 +54,15 @@ function itemStyle(i) {
   }
 }
 
+function handleItemClick(i) {
+  if (Math.round(currentIndex.value) === i) {
+    const post = posts[i]
+    router.go('posts/' + post?.md_url)
+  } else {
+    select(i)
+  }
+}
+
 function tick() {
   currentIndex.value = lerp(currentIndex.value, targetIndex.value, 0.12)
   if (Math.abs(currentIndex.value - targetIndex.value) < 0.001) {
@@ -63,7 +74,7 @@ function tick() {
 }
 
 function commitTarget(next) {
-  targetIndex.value = clamp(next, 0, songs.length - 1)
+  targetIndex.value = clamp(next, 0, posts.length - 1)
   if (!raf) raf = requestAnimationFrame(tick)
 }
 
@@ -73,7 +84,7 @@ function select(i) {
 
 function onWheel(e) {
   const now = performance.now()
-  const delta = e.deltaY > 0 ? 1 : -1
+  const delta = e.deltaY > 0 ? -1 : 1
   const fast = now - lastWheelTime < 120
   lastWheelTime = now
   commitTarget(targetIndex.value + delta * (fast ? 0.7 : 1))
@@ -83,8 +94,8 @@ function onKeydown(e) {
   if (e.key === 'ArrowDown') commitTarget(targetIndex.value + 1)
   if (e.key === 'ArrowUp') commitTarget(targetIndex.value - 1)
   if (e.key === 'Enter') {
-    const song = songs[Math.round(currentIndex.value)]
-    console.log('Selected:', song?.title)
+    const post = posts[Math.round(currentIndex.value)]
+    router.go('posts/' + post?.md_url)
   }
 }
 
