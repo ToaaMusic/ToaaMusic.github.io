@@ -1,9 +1,0 @@
----
-layout: home
----
-
-<Home />
-
-<script setup lang="ts">
-import Home from '../.vitepress/theme/components/Home.vue'
-</script>

@@ -9,7 +9,7 @@ export default createContentLoader('posts/**/*.md', {
       .filter(({ url }) => !url.endsWith('/index.md'))
       .map(({ url, frontmatter, excerpt }) => {
         const md_url = url.replace(/^\/posts\//, '').replace(/\.html$/, '')
-        
+
         return {
           id: frontmatter.id || md_url,
           md_url: md_url,
