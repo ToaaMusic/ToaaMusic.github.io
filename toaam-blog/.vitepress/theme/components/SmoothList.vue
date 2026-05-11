@@ -37,12 +37,12 @@ function itemStyle(i) {
   const abs = Math.abs(offset)
   const t = clamp(1 - abs / 4.2, 0, 1)
   const eased = easeOutCubic(t)
-  const y = offset * 86
+  const y = offset * -86
   const scale = lerp(0.74, 1.08, eased)
   const opacity = lerp(0.08, 1, eased)
   const blur = lerp(5.5, 0, eased)
-  const x = lerp(86, 0, eased)
-  const rot = lerp(12, 0, eased) * Math.sign(offset)
+  const x = lerp(-86, 0, eased)
+  const rot = lerp(-12, 0, eased) * Math.sign(offset)
   return {
     display: abs < 4.2 ? 'grid' : 'none',
     transform: `translate3d(${x}px, ${y}px, 0) scale(${scale}) rotateZ(${rot}deg)`,
